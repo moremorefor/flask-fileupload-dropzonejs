@@ -14,11 +14,11 @@ $(function() {
     clickable: "#clickarea",
     createImageThumbnails: true,
     maxThumbnailFilesize: 2, // in MB
-    thumbnailWidth: 200,
-    thumbnailHeight: 200,
+    thumbnailWidth: 300,
+    thumbnailHeight: 300,
     maxFiles: 3,
-    acceptedFiles: "image/png, image/jpg, image/gif", //This is a comma separated list of mime types or file extensions.Eg.: image/*,application/pdf,.psd.
-    // autoProcessQueue: true, // When set to false you have to call myDropzone.processQueue() yourself in order to upload the dropped files. 
+    acceptedFiles: "image/png, image/jpeg, image/gif", //This is a comma separated list of mime types or file extensions.Eg.: image/*,application/pdf,.psd.
+    autoProcessQueue: true, // When set to false you have to call myDropzone.processQueue() yourself in order to upload the dropped files. 
     forceFallback: false,
 
     init: function() {
@@ -30,7 +30,7 @@ $(function() {
        * Crop rectangle range
        * Those values are going to be used by ctx.drawImage().
        */ 
-      return {"srcX":0, "srcY":0, "srcWidth":300, "srcHeight":300}
+      return {"srcX":0, "srcY":0, "srcWidth":600, "srcHeight":600}
     },
     accept: function(file, done) {
       console.log("accept");
