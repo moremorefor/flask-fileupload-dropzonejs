@@ -60,7 +60,6 @@ def js_static(filename):
     return send_from_directory(app.root_path + '/static/js/', filename)
 
 
-# Define a route for the webserver
 @app.route('/')
 def index():
     return render_template('index.html')

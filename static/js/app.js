@@ -11,14 +11,14 @@ $(function() {
     },
     addRemoveLinks: true, // add an <a class="dz-remove">Remove file</a> element to the file preview that will remove the file, and it will change to Cancel upload
     previewsContainer: "#previewsContainer",
-    clickable: "#clickarea",
+    clickable: "#selectImage",
     createImageThumbnails: true,
     maxThumbnailFilesize: 2, // in MB
     thumbnailWidth: 300,
     thumbnailHeight: 300,
     maxFiles: 3,
     acceptedFiles: "image/png, image/jpeg, image/gif", //This is a comma separated list of mime types or file extensions.Eg.: image/*,application/pdf,.psd.
-    autoProcessQueue: true, // When set to false you have to call myDropzone.processQueue() yourself in order to upload the dropped files. 
+    autoProcessQueue: false, // When set to false you have to call myDropzone.processQueue() yourself in order to upload the dropped files. 
     forceFallback: false,
 
     init: function() {
@@ -30,7 +30,7 @@ $(function() {
        * Crop rectangle range
        * Those values are going to be used by ctx.drawImage().
        */ 
-      return {"srcX":0, "srcY":0, "srcWidth":600, "srcHeight":600}
+      return {"srcX":0, "srcY":0, "srcWidth":300, "srcHeight":300}
     },
     accept: function(file, done) {
       console.log("accept");
@@ -45,6 +45,16 @@ $(function() {
    * Custom preview template here.
    * ex) myDropzone.options.previewTemplate = '';
    */
+  myDropzone.options.previewTemplate = '\
+    <div class="dz-preview dz-file-preview">\
+      <div class="dz-details">\
+      <div class="dz-filename"><span data-dz-name></span></div>\
+      <div class="dz-size" data-dz-size></div>\
+      <img data-dz-thumbnail />\
+    </div>\
+    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\
+    <div class="dz-error-message"><span data-dz-errormessage></span></div>\
+    </div>';
 
 
   /*
@@ -66,6 +76,9 @@ $(function() {
   myDropzone.on("addedfile", function(file) {
     console.log("addedfile");
     console.log(file);
+    $('#fileSubmit').click(function(){
+        myDropzone.processQueue(); //processes the queue
+    });
   });
   myDropzone.on("removedfile", function(file) { console.log("removedfile"); });
   myDropzone.on("selectedfiles", function(file) { console.log("selectedfiles"); });
